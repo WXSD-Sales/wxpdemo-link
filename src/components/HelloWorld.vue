@@ -1,27 +1,27 @@
 <template>
   <div>
-    <div>
+    <div class="mx-1">
       <b-tabs type="is-toggle" v-model='tab' size="is-medium">
         <b-tab-item label="Widget" value="widget" icon="widgets"></b-tab-item>
         <b-tab-item label="SDK" value="sdk" icon="code-braces"></b-tab-item>
       </b-tabs>
     </div>
 
-    <form class="box mx-6 mt-6" v-if="tab === 'widget'">
+    <form class="box mx-1 mt-6" v-if="tab === 'widget'">
 
-      <b-field label="Destination" label-position="on-border" custom-class="is-large">
+      <b-field label="Destination" label-position="on-border" custom-class="is-medium">
         <b-input v-model="destination"
                  placeholder="The email address, roomId, or SIP URI."
-                 size="is-large"
+                 size="is-medium"
                  required
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Destination Type" label-position="on-border" custom-class="is-large">
+      <b-field label="Destination Type" label-position="on-border" custom-class="is-medium">
         <b-select v-model="destinationType"
                   placeholder="Select the type of destination"
-                  size="is-large"
+                  size="is-medium"
                   required
                   expanded>
           <option
@@ -33,32 +33,32 @@
         </b-select>
       </b-field>
 
-      <b-field label="Token" label-position="on-border" custom-class="is-large">
+      <b-field label="Token" label-position="on-border" custom-class="is-medium">
         <b-input v-model="token"
                  placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
-                 size="is-large"
+                 size="is-medium"
                  required
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Label" label-position="on-border" custom-class="is-large">
+      <b-field label="Label" label-position="on-border" custom-class="is-medium">
         <b-input v-model="label"
                  placeholder="The email address, roomId, or SIP URI"
-                 size="is-large"
+                 size="is-medium"
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-large">
+      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-medium">
         <b-input v-model="backgroundImage"
                  placeholder="The publicly accessible URL of a custom background image to use"
-                 size="is-large"
+                 size="is-medium"
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Widget URL" label-position="on-border" custom-class="is-large"
+      <b-field label="Widget URL" label-position="on-border" custom-class="is-medium"
                :type="isWidgetUrlValid ? '' : 'is-danger'"
                :message="isWidgetUrlValid ? '' : 'Please complete the required fields above.'"
       >
@@ -70,7 +70,7 @@
                   icon-left="content-copy"
                   @click="copyToClipBoard(widgetUrl)"
                   :disabled="!isWidgetUrlValid"
-                  size="is-large"
+                  size="is-medium"
         >
           Copy URL to Clipboard
         </b-button>
@@ -79,28 +79,28 @@
 
     <form class="box mx-6 mt-6" v-if="tab === 'sdk'">
 
-      <b-field label="Destination" label-position="on-border" custom-class="is-large">
+      <b-field label="Destination" label-position="on-border" custom-class="is-medium">
         <b-input v-model="destination"
                  placeholder="The text to show"
-                 size="is-large"
+                 size="is-medium"
                  required
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Token" label-position="on-border" custom-class="is-large">
+      <b-field label="Token" label-position="on-border" custom-class="is-medium">
         <b-input v-model="token"
                  placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
-                 size="is-large"
+                 size="is-medium"
                  required
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="User Type" label-position="on-border" custom-class="is-large">
+      <b-field label="User Type" label-position="on-border" custom-class="is-medium">
         <b-select v-model="userType"
                   placeholder="Select the type of destination"
-                  size="is-large"
+                  size="is-medium"
                   required
                   expanded>
           <option :value="true">Guest</option>
@@ -108,53 +108,53 @@
         </b-select>
       </b-field>
 
-      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-large">
+      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-medium">
         <b-input v-model="backgroundImage"
                  placeholder="The publicly accessible URL of a custom background image to use"
-                 size="is-large"
+                 size="is-medium"
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field label="Meet Button Color" label-position="on-border" custom-class="is-large">
+      <b-field label="Meet Button Color" label-position="on-border" custom-class="is-medium">
         <b-input v-model="meetButtonColor"
                  placeholder="A HEX color string for the meet button(s) e.g. 0000ff for blue"
-                 size="is-large"
+                 size="is-medium"
                  expanded>
         </b-input>
       </b-field>
 
-      <b-field custom-class="is-large">
+      <b-field custom-class="is-medium">
         <b-switch v-model="headerToggle" size="is-medium">
           Header Toggle (display the header at the top of the page?)
         </b-switch>
       </b-field>
 
-      <b-field custom-class="is-large">
+      <b-field custom-class="is-medium">
         <b-switch v-model="listenOnlyOption" size="is-medium">
           Listen Only Option (display the listen Only meet button?)
         </b-switch>
       </b-field>
 
-      <b-field custom-class="is-large">
+      <b-field custom-class="is-medium">
         <b-switch v-model="selfView" size="is-medium">
           Self View (display the self view video element?)
         </b-switch>
       </b-field>
 
-      <b-field custom-class="is-large">
+      <b-field custom-class="is-medium">
         <b-switch v-model="shareOnlyOption" size="is-medium">
           Share Only (only receive and send shared screen?)
         </b-switch>
       </b-field>
 
-      <b-field custom-class="is-large">
+      <b-field custom-class="is-medium">
         <b-switch v-model="showSMS" size="is-medium">
           Show SMS (display the send guest link via SMS?)
         </b-switch>
       </b-field>
 
-      <b-field label="SDK URL" label-position="on-border" custom-class="is-large"
+      <b-field label="SDK URL" label-position="on-border" custom-class="is-medium"
                :type="isSdkUrlValid ? '' : 'is-danger'"
                :message="isSdkUrlValid ? '' : 'Please complete the required fields above.'"
       >
@@ -166,7 +166,7 @@
                   icon-left="content-copy"
                   @click="copyToClipBoard(sdkUrl)"
                   :disabled="!isSdkUrlValid"
-                  size="is-large"
+                  size="is-medium"
         >
           Copy URL to Clipboard
         </b-button>
