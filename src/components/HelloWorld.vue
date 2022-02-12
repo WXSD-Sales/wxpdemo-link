@@ -77,7 +77,7 @@
       </div>
     </form>
 
-    <form class="box mx-6 mt-6" v-if="tab === 'sdk'">
+    <form class="box mx-1 mt-6" v-if="tab === 'sdk'">
 
       <b-field label="Destination" label-position="on-border" custom-class="is-medium">
         <b-input v-model="destination"
