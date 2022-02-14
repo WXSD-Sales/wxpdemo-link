@@ -81,7 +81,7 @@
 
       <b-field label="Destination" label-position="on-border" custom-class="is-medium">
         <b-input v-model="destination"
-                 placeholder="The text to show"
+                 placeholder="The email address, roomId, or SIP URI."
                  size="is-medium"
                  required
                  expanded>
