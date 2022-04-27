@@ -24,7 +24,7 @@
       class="box mx-1 mt-6"
     >
       <b-field
-        label="Destination"
+        label="Destination *"
         label-position="on-border"
         custom-class="is-medium"
       >
@@ -38,7 +38,7 @@
       </b-field>
 
       <b-field
-        label="Destination Type"
+        label="Destination Type *"
         label-position="on-border"
         custom-class="is-medium"
       >
@@ -60,7 +60,7 @@
       </b-field>
 
       <b-field
-        label="Token"
+        label="Token *"
         label-position="on-border"
         custom-class="is-medium"
       >
@@ -134,7 +134,7 @@
       class="box mx-1 mt-6"
     >
       <b-field
-        label="Destination"
+        label="Destination *"
         label-position="on-border"
         custom-class="is-medium"
       >
@@ -148,7 +148,7 @@
       </b-field>
 
       <b-field
-        label="Token"
+        label="Token *"
         label-position="on-border"
         custom-class="is-medium"
       >
@@ -162,7 +162,7 @@
       </b-field>
 
       <b-field
-        label="User Type"
+        label="User Type *"
         label-position="on-border"
         custom-class="is-medium"
       >
