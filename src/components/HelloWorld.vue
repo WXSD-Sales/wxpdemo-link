@@ -150,7 +150,9 @@
 
       <b-field custom-class="is-medium">
         <b-switch v-model="showSMS" size="is-medium">
-          Show SMS (display the send guest link via SMS?)
+          Show SMS (display the send guest link via SMS button?)
+        </b-switch>
+      </b-field>
 
       <b-field custom-class="is-medium">
         <b-switch v-model="showEmail" size="is-medium">
