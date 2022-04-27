@@ -1,0 +1,17 @@
+// Set your colors
+$primary: #00BCF5;
+$purple: #6B32CA;
+$link: #00BCF5;
+$blue: #00BCF5;
+$info: #00BCF5;
+$green: #82CF5F;
+$success: #82CF5F;
+$yellow: #fbbd23;
+$warning: #fbbd23;
+$red: #FF3A65;
+$danger: #FF3A65;
+
+// Import Bulma and Buefy styles
+@import "~bulma/sass/utilities/_all";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
