@@ -242,7 +242,7 @@ export default {
     },
     widgetUrl () {
       // TODO: trim the strings
-      let url = `https://wxsd-sales.github.io/wxpdemo/public/widget.html?` +
+      let url = `https://wxsd-sales.github.io/wxsd-guest-demo/public/widget.html?` +
         `destination=${encodeURIComponent(this.destination)}&` +
         `destinationType=${encodeURIComponent(this.destinationType)}&` +
         `token=${encodeURIComponent(this.token)}`
@@ -263,7 +263,7 @@ export default {
     },
     sdkUrl () {
       // TODO: trim the strings
-      let url = `https://wxsd-sales.github.io/wxpdemo/public/guest.html?` +
+      let url = `https://wxsd-sales.github.io/wxsd-guest-demo/public/guest.html?` +
         `destination=${encodeURIComponent(this.destination)}&` +
         `token=${encodeURIComponent(this.token)}`
 
