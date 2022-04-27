@@ -3,7 +3,7 @@
     <div class="mx-1">
       <b-tabs
         v-model="tab"
-        type="is-toggle"
+        type="is-toggle-rounded"
         size="is-medium"
       >
         <b-tab-item
