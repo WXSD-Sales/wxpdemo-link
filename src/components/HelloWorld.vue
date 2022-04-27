@@ -1,178 +1,291 @@
 <template>
   <div>
     <div class="mx-1">
-      <b-tabs type="is-toggle" v-model='tab' size="is-medium">
-        <b-tab-item label="Widget" value="widget" icon="widgets"></b-tab-item>
-        <b-tab-item label="SDK" value="sdk" icon="code-braces"></b-tab-item>
+      <b-tabs
+        v-model="tab"
+        type="is-toggle"
+        size="is-medium"
+      >
+        <b-tab-item
+          label="Widget"
+          value="widget"
+          icon="widgets"
+        />
+        <b-tab-item
+          label="SDK"
+          value="sdk"
+          icon="code-braces"
+        />
       </b-tabs>
     </div>
 
-    <form class="box mx-1 mt-6" v-if="tab === 'widget'">
-
-      <b-field label="Destination" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="destination"
-                 placeholder="The email address, roomId, or SIP URI."
-                 size="is-medium"
-                 required
-                 expanded>
-        </b-input>
+    <form
+      v-if="tab === 'widget'"
+      class="box mx-1 mt-6"
+    >
+      <b-field
+        label="Destination"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="destination"
+          placeholder="The email address, roomId, or SIP URI."
+          size="is-medium"
+          required
+          expanded
+        />
       </b-field>
 
-      <b-field label="Destination Type" label-position="on-border" custom-class="is-medium">
-        <b-select v-model="destinationType"
-                  placeholder="Select the type of destination"
-                  size="is-medium"
-                  required
-                  expanded>
+      <b-field
+        label="Destination Type"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-select
+          v-model="destinationType"
+          placeholder="Select the type of destination"
+          size="is-medium"
+          required
+          expanded
+        >
           <option
             v-for="option in destinationTypes"
+            :key="option.value"
             :value="option.value"
-            :key="option.value">
+          >
             {{ option.name }}
           </option>
         </b-select>
       </b-field>
 
-      <b-field label="Token" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="token"
-                 placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
-                 size="is-medium"
-                 required
-                 expanded>
-        </b-input>
-      </b-field>
-
-      <b-field label="Label" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="label"
-                 placeholder="The email address, roomId, or SIP URI"
-                 size="is-medium"
-                 expanded>
-        </b-input>
-      </b-field>
-
-      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="backgroundImage"
-                 placeholder="The publicly accessible URL of a custom background image to use"
-                 size="is-medium"
-                 expanded>
-        </b-input>
-      </b-field>
-
-      <b-field label="Widget URL" label-position="on-border" custom-class="is-medium"
-               :type="isWidgetUrlValid ? '' : 'is-danger'"
-               :message="isWidgetUrlValid ? '' : 'Please complete the required fields above.'"
+      <b-field
+        label="Token"
+        label-position="on-border"
+        custom-class="is-medium"
       >
-        <b-input type="textarea" disabled :value="widgetUrl" size="is-medium" expanded></b-input>
+        <b-input
+          v-model="token"
+          placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
+          size="is-medium"
+          required
+          expanded
+        />
+      </b-field>
+
+      <b-field
+        label="Label"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="label"
+          placeholder="The email address, roomId, or SIP URI"
+          size="is-medium"
+          expanded
+        />
+      </b-field>
+
+      <b-field
+        label="Background Image (URL)"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="backgroundImage"
+          placeholder="The publicly accessible URL of a custom background image to use"
+          size="is-medium"
+          expanded
+        />
+      </b-field>
+
+      <b-field
+        label="Widget URL"
+        label-position="on-border"
+        custom-class="is-medium"
+        :type="isWidgetUrlValid ? '' : 'is-danger'"
+        :message="isWidgetUrlValid ? '' : 'Please complete the required fields above.'"
+      >
+        <b-input
+          type="textarea"
+          disabled
+          :value="widgetUrl"
+          size="is-medium"
+          expanded
+        />
       </b-field>
 
       <div class="buttons is-right">
-        <b-button type="is-link"
-                  icon-left="content-copy"
-                  @click="copyToClipBoard(widgetUrl)"
-                  :disabled="!isWidgetUrlValid"
-                  size="is-medium"
+        <b-button
+          type="is-info"
+          class="is-rounded"
+          icon-left="content-copy"
+          :disabled="!isWidgetUrlValid"
+          size="is-medium"
+          @click="copyToClipBoard(widgetUrl)"
         >
           Copy URL to Clipboard
         </b-button>
       </div>
     </form>
 
-    <form class="box mx-1 mt-6" v-if="tab === 'sdk'">
-
-      <b-field label="Destination" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="destination"
-                 placeholder="The email address, roomId, or SIP URI."
-                 size="is-medium"
-                 required
-                 expanded>
-        </b-input>
+    <form
+      v-if="tab === 'sdk'"
+      class="box mx-1 mt-6"
+    >
+      <b-field
+        label="Destination"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="destination"
+          placeholder="The email address, roomId, or SIP URI."
+          size="is-medium"
+          required
+          expanded
+        />
       </b-field>
 
-      <b-field label="Token" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="token"
-                 placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
-                 size="is-medium"
-                 required
-                 expanded>
-        </b-input>
+      <b-field
+        label="Token"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="token"
+          placeholder="The Webex Bearer token of the local user (i.e. your token from the developer portal)"
+          size="is-medium"
+          required
+          expanded
+        />
       </b-field>
 
-      <b-field label="User Type" label-position="on-border" custom-class="is-medium">
-        <b-select v-model="userType"
-                  placeholder="Select the type of destination"
-                  size="is-medium"
-                  required
-                  expanded>
-          <option :value="true">Guest</option>
-          <option :value="false">Other</option>
+      <b-field
+        label="User Type"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-select
+          v-model="userType"
+          placeholder="Select the type of destination"
+          size="is-medium"
+          required
+          expanded
+        >
+          <option :value="true">
+            Guest
+          </option>
+          <option :value="false">
+            Other
+          </option>
         </b-select>
       </b-field>
 
-      <b-field label="Background Image (URL)" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="backgroundImage"
-                 placeholder="The publicly accessible URL of a custom background image to use"
-                 size="is-medium"
-                 expanded>
-        </b-input>
+      <b-field
+        label="Background Image (URL)"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="backgroundImage"
+          placeholder="The publicly accessible URL of a custom background image to use"
+          size="is-medium"
+          expanded
+        />
       </b-field>
 
-      <b-field label="Meet Button Color" label-position="on-border" custom-class="is-medium">
-        <b-input v-model="meetButtonColor"
-                 placeholder="A HEX color string for the meet button(s) e.g. 0000ff for blue"
-                 size="is-medium"
-                 expanded>
-        </b-input>
+      <b-field
+        label="Meet Button Color"
+        label-position="on-border"
+        custom-class="is-medium"
+      >
+        <b-input
+          v-model="meetButtonColor"
+          placeholder="A HEX color string for the meet button(s) e.g. 0000ff for blue"
+          size="is-medium"
+          expanded
+        />
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="headerToggle" size="is-medium">
+        <b-switch
+          v-model="headerToggle"
+          size="is-medium"
+        >
           Header Toggle (display the header at the top of the page?)
         </b-switch>
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="listenOnlyOption" size="is-medium">
+        <b-switch
+          v-model="listenOnlyOption"
+          size="is-medium"
+        >
           Listen Only Option (display the listen Only meet button?)
         </b-switch>
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="selfView" size="is-medium">
+        <b-switch
+          v-model="selfView"
+          size="is-medium"
+        >
           Self View (display the self view video element?)
         </b-switch>
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="shareOnlyOption" size="is-medium">
+        <b-switch
+          v-model="shareOnlyOption"
+          size="is-medium"
+        >
           Share Only (only receive and send shared screen?)
         </b-switch>
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="showSMS" size="is-medium">
+        <b-switch
+          v-model="showSMS"
+          size="is-medium"
+        >
           Show SMS (display the send guest link via SMS button?)
         </b-switch>
       </b-field>
 
       <b-field custom-class="is-medium">
-        <b-switch v-model="showEmail" size="is-medium">
-          Show Email (display send guest link via Email button?)
+        <b-switch
+          v-model="showEmail"
+          size="is-medium"
+        >
+          Show Email (display the send guest link via Email button?)
         </b-switch>
       </b-field>
 
-      <b-field label="SDK URL" label-position="on-border" custom-class="is-medium"
-               :type="isSdkUrlValid ? '' : 'is-danger'"
-               :message="isSdkUrlValid ? '' : 'Please complete the required fields above.'"
+      <b-field
+        label="SDK URL"
+        label-position="on-border"
+        custom-class="is-medium"
+        :type="isSdkUrlValid ? '' : 'is-danger'"
+        :message="isSdkUrlValid ? '' : 'Please complete the required fields above.'"
       >
-        <b-input type="textarea" disabled :value="sdkUrl" size="is-medium" expanded></b-input>
+        <b-input
+          type="textarea"
+          disabled
+          :value="sdkUrl"
+          size="is-medium"
+          expanded
+        />
       </b-field>
 
       <div class="buttons is-right">
-        <b-button type="is-link"
-                  icon-left="content-copy"
-                  @click="copyToClipBoard(sdkUrl)"
-                  :disabled="!isSdkUrlValid"
-                  size="is-medium"
+        <b-button
+          type="is-info"
+          class="is-rounded"
+          icon-left="content-copy"
+          :disabled="!isSdkUrlValid"
+          size="is-medium"
+          @click="copyToClipBoard(sdkUrl)"
         >
           Copy URL to Clipboard
         </b-button>
@@ -215,18 +328,6 @@ export default {
       showEmail: false
     }
   },
-  methods: {
-    copyToClipBoard (content) {
-      navigator.clipboard.writeText(content)
-      this.$buefy.snackbar.open({
-        duration: 1000,
-        message: 'Copied contents to clipboard!',
-        pauseOnHover: true,
-        type: 'is-success',
-        position: 'is-top-right'
-      })
-    }
-  },
   computed: {
     tab: {
       get: function () {
@@ -240,7 +341,7 @@ export default {
         return 'widget'
       },
       set: function (value) {
-        this.$router.push({query: {tab: value}})
+        this.$router.push({ query: { tab: value } })
       }
     },
     isWidgetUrlValid () {
@@ -249,7 +350,7 @@ export default {
     },
     widgetUrl () {
       // TODO: trim the strings
-      let url = `https://wxsd-sales.github.io/wxsd-guest-demo/public/widget.html?` +
+      let url = 'https://wxsd-sales.github.io/wxsd-guest-demo/public/widget.html?' +
         `destination=${encodeURIComponent(this.destination)}&` +
         `destinationType=${encodeURIComponent(this.destinationType)}&` +
         `token=${encodeURIComponent(this.token)}`
@@ -270,7 +371,7 @@ export default {
     },
     sdkUrl () {
       // TODO: trim the strings
-      let url = `https://wxsd-sales.github.io/wxsd-guest-demo/public/guest.html?` +
+      let url = 'https://wxsd-sales.github.io/wxsd-guest-demo/public/guest.html?' +
         `destination=${encodeURIComponent(this.destination)}&` +
         `token=${encodeURIComponent(this.token)}`
 
@@ -294,6 +395,18 @@ export default {
       url = url + '&showEmail=' + encodeURIComponent(this.showEmail)
 
       return url
+    }
+  },
+  methods: {
+    copyToClipBoard (content) {
+      navigator.clipboard.writeText(content)
+      this.$buefy.snackbar.open({
+        duration: 1000,
+        message: 'Copied contents to clipboard!',
+        pauseOnHover: true,
+        type: 'is-success',
+        position: 'is-top-right'
+      })
     }
   }
 }
