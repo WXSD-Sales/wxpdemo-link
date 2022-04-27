@@ -151,6 +151,10 @@
       <b-field custom-class="is-medium">
         <b-switch v-model="showSMS" size="is-medium">
           Show SMS (display the send guest link via SMS?)
+
+      <b-field custom-class="is-medium">
+        <b-switch v-model="showEmail" size="is-medium">
+          Show Email (display send guest link via Email button?)
         </b-switch>
       </b-field>
 
@@ -205,7 +209,8 @@ export default {
       listenOnlyOption: false,
       selfView: true,
       shareOnlyOption: false,
-      showSMS: false
+      showSMS: false,
+      showEmail: false
     }
   },
   methods: {
@@ -284,6 +289,7 @@ export default {
       url = url + '&selfView=' + encodeURIComponent(this.selfView)
       url = url + '&shareOnlyOption=' + encodeURIComponent(this.shareOnlyOption)
       url = url + '&showSMS=' + encodeURIComponent(this.showSMS)
+      url = url + '&showEmail=' + encodeURIComponent(this.showEmail)
 
       return url
     }
